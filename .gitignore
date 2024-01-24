@@ -1,0 +1,14 @@
+# backend/.gitignore
+
+# Ignore node_modules in the backend
+node_modules/
+
+# Ignore .env file in the backend
+.env
+
+# Ignore everything in the frontend except the dist folder
+frontend/*
+!frontend/dist/
+
+# Exclude hidden files in the frontend
+frontend/.*
