@@ -50,10 +50,13 @@ const getAllTransaction = async (req, res) => {
           $gt: moment().subtract(Number(frequency), 'd').toDate(),
         };
       } else {
-        dateQuery = {
-          $gte: startDate,
-          $lte: endDate,
-        };
+        const parsedStartDate = moment(startDate).toDate();
+            const parsedEndDate = moment(endDate).toDate();
+
+            dateQuery = {
+                $gte: parsedStartDate,
+                $lte: parsedEndDate,
+            };
       }
   
       const query = {
@@ -66,7 +69,7 @@ const getAllTransaction = async (req, res) => {
       } // No type filter for "all"
   
       const transactions = await transactionModel.find(query);
-      res.status(200).json({ transactions });
+      res.status(200).json({ transactions});
     } catch (error) {
       console.log(error);
       res.status(500).json({ error });
